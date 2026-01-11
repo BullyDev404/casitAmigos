@@ -1,11 +1,8 @@
 import styled from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
+import Heading from "./ui/Heading";
 
-const H1 = styled.h1`
-  font-size: 30px;
-  font-weight: 600;
-  background-color: yellow;
-`;
+
 const Button = styled.button`
   font-size: 1.4 rem;
   padding: 1.2rem 1.6rem;
@@ -26,9 +23,11 @@ function App() {
       <GlobalStyles />
 
       <StyledApp>
-        <H1>CasitaMigos</H1>
+        <Heading type = 'h1'>CasitaMigos</Heading>
         <Button onClick={() => alert("button clicked")}>Check in</Button>
+        <Heading type = 'h2'>CasitaMigos</Heading>
       </StyledApp>
+
     </>
   );
 }
