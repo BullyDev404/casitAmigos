@@ -1,4 +1,4 @@
-import styled,{cssn} from "styled-components";
+import styled,{css} from "styled-components";
 
 // const test = "text-align: center"
 
@@ -9,7 +9,7 @@ ${props => props.type === "h1" && css`
 `}
   font-size: 20px;
   font-weight: 600;
-  background-color: yellow;
+  /* background-color: yellow; */
 
 `;
 
