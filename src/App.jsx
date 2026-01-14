@@ -14,6 +14,8 @@ import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./ui/AppLayout";
 
 function App() {
+
+
   return (
     <>
       <GlobalStyles />
