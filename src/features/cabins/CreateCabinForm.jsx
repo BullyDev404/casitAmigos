@@ -1,11 +1,16 @@
+////styling and ui
 import styled from "styled-components";
-
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
+import toast from "react-hot-toast";
+
+//hooks and mutations
 import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createCabin } from "../../services/apiCabins";
 
 const FormRow = styled.div`
   display: grid;
@@ -44,9 +49,20 @@ const Error = styled.span`
 `;
 
 function CreateCabinForm() {
+  const queryClient = useQueryClient();
+
+  const { mutate, isLoading: isCreating } = useMutation({
+    mutationFn: createCabin,
+    onSuccess: () => {
+      toast.success("Cabin successfully created");
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
+    },
+    onError: (err) => toast.error(err.message || "Could not create cabin"),
+  });
+
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => mutate(data);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -102,8 +118,8 @@ function CreateCabinForm() {
         {/* type is an HTML attribute! */}
         <Button variation="secondary" type="reset">
           Cancel
-        </Button> 
-        <Button>Add cabin</Button>
+        </Button>
+        <Button disabled={isCreating}>Add cabin</Button>
       </FormRow>
     </Form>
   );
