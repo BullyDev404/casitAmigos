@@ -1,5 +1,5 @@
 ////styling and ui
-import styled from "styled-components";
+// import styled from "styled-components";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
@@ -11,8 +11,6 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCabin } from "../../services/apiCabins";
-
-
 
 function CreateCabinForm() {
   const { register, handleSubmit, getValues, formState } = useForm();
@@ -38,22 +36,21 @@ function CreateCabinForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit, onError)}>
-      <FormRow>
-        <Label htmlFor="name">Cabin name</Label>
+      {/* ////////////////////////////////////////////////////////// */}
+      <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input
+          disabled={isCreating}
           type="text"
           id="name"
           {...register("name", {
             required: "This field is required",
           })}
         />
-
-        {errors.name && <Error>{errors.name.message}</Error>}
       </FormRow>
 
-      <FormRow>
-        <Label htmlFor="maxCapacity">Maximum capacity</Label>
+      <FormRow label="Maximum capacity" error={errors?.maxCapacity?.message}>
         <Input
+          disabled={isCreating}
           type="number"
           id="maxCapacity"
           {...register(
@@ -66,9 +63,9 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
-        <Label htmlFor="regularPrice">Regular price</Label>
+      <FormRow label="Regular price" error={errors?.regularPrice?.message}>
         <Input
+          disabled={isCreating}
           type="number"
           id="regularPrice"
           {...register(
@@ -85,9 +82,9 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
-        <Label htmlFor="discount">Discount</Label>
+      <FormRow label="Discount" error={errors?.discount?.message}>
         <Input
+          disabled={isCreating}
           type="number"
           id="discount"
           defaultValue={0}
@@ -104,9 +101,12 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
-        <Label htmlFor="description">Description for website</Label>
+      <FormRow
+        label="Description for website"
+        error={errors?.description?.message}
+      >
         <Textarea
+          disabled={isCreating}
           type="number"
           id="description"
           defaultValue=""
@@ -116,7 +116,7 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow>
+      <FormRow label="Cabin photo" error={errors?.image?.message}>
         <Label htmlFor="image">Cabin photo</Label>
         <FileInput id="image" accept="image/*" {...register("image")} />
       </FormRow>
