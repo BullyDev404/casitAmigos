@@ -21,6 +21,10 @@ export async function createCabin(cabinData) {
     throw new Error("Cabins could not be created");
   }
 
+
+  //uploading the image
+  
+
   return data;
 }
 
