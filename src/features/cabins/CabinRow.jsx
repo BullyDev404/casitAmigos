@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { formatCurrency } from "../../utils/helpers";
-import { useDeleteCabin } from "./UseDeleteCabin";
+import { useDeleteCabin } from "./useDeleteCabin";
 import { useState } from "react";
 
 const TableRow = styled.div`
